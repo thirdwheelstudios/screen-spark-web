@@ -30,7 +30,7 @@ export const useSocketsStore = defineStore('sockets', {
   },
   actions: {
     connect() {
-      const socket = io('ws://localhost:8080/', {
+      const socket = io(import.meta.env.VITE_SOCKET_API_URL, {
         extraHeaders: {
           'x-api-key': import.meta.env.VITE_SOCKET_API_KEY,
         },
