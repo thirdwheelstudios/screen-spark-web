@@ -15,12 +15,13 @@ export const useSocketsStore = defineStore('sockets', {
     let _sdp: RTCSessionDescription | null | undefined
     let _candidate: RTCIceCandidate | null | undefined
     let _status: SocketStatus | undefined
+    let _socketId: string | undefined
 
-    return { _socket, _senderId, _sdp, _candidate, _status }
+    return { _socket, _senderId, _sdp, _candidate, _status, _socketId }
   },
   getters: {
     id(state) {
-      return state._socket?.id
+      return state._socketId
     },
     isConnected(state) {
       return state._status === SocketStatus.connected
@@ -49,6 +50,7 @@ export const useSocketsStore = defineStore('sockets', {
       })
 
       socket.on('connect', () => {
+        this._socketId = socket.id
         this._status = SocketStatus.connected
       })
 
