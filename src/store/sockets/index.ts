@@ -1,22 +1,29 @@
 import { defineStore } from 'pinia'
 import { io, Socket } from 'socket.io-client'
 
+export enum SocketStatus {
+  disconnected = 1,
+  connecting,
+  connected,
+  error,
+}
+
 export const useSocketsStore = defineStore('sockets', {
   state: () => {
     let _socket: Socket | undefined
-    let _connected: boolean = false
     let _senderId: string | undefined
     let _sdp: RTCSessionDescription | null | undefined
     let _candidate: RTCIceCandidate | null | undefined
+    let _status: SocketStatus | undefined
 
-    return { _socket, _connected, _senderId, _sdp, _candidate }
+    return { _socket, _senderId, _sdp, _candidate, _status }
   },
   getters: {
     id(state) {
       return state._socket?.id
     },
     isConnected(state) {
-      return state._connected
+      return state._status === SocketStatus.connected
     },
     senderId(state) {
       return state._senderId
@@ -27,9 +34,14 @@ export const useSocketsStore = defineStore('sockets', {
     candidate(state) {
       return state._candidate
     },
+    status(state) {
+      return state._status
+    },
   },
   actions: {
     connect() {
+      this._status = SocketStatus.connecting
+
       const socket = io(import.meta.env.VITE_SOCKET_API_URL, {
         extraHeaders: {
           'x-api-key': import.meta.env.VITE_SOCKET_API_KEY,
@@ -37,11 +49,11 @@ export const useSocketsStore = defineStore('sockets', {
       })
 
       socket.on('connect', () => {
-        this._connected = true
+        this._status = SocketStatus.connected
       })
 
       socket.on('disconnect', () => {
-        this._connected = false
+        this._status = SocketStatus.disconnected
       })
 
       socket.on('senderConnected', (senderId: string) => {
