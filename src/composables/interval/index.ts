@@ -8,7 +8,7 @@ const getInterval = (timeoutInMs: number) => {
     interval.value = setInterval(() => {
       intervalTrigger.value = true
       clearInterval(interval.value)
-    }, timeoutInMs)
+    }, timeoutInMs, [])
   })
 
   onUnmounted(() => {
