@@ -1,6 +1,5 @@
 <script setup lang="ts">
 interface Props {
-  message: string
   icon: string
   spin?: boolean
 }
@@ -13,7 +12,7 @@ withDefaults(defineProps<Props>(), {
 <template>
   <div>
     <font-awesome-icon :icon="['fas', icon]" size="3x" :spin="spin" />
-    <p>{{ message }}</p>
+    <slot />
   </div>
 </template>
 
@@ -21,5 +20,6 @@ withDefaults(defineProps<Props>(), {
 div {
   display: flex;
   flex-direction: column;
+  max-width: 600px;
 }
 </style>

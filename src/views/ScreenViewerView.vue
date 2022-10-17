@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useSocketsStore } from '../store'
-import InfoPanel from '../components/InfoPanel.vue'
+import CenteredInfoPanel from '../components/CenteredInfoCard.vue'
+import { getInterval } from '../composables'
 
 const socketsStore = useSocketsStore()
+const { intervalTrigger } = getInterval(10000)
+
+const message = ref('Connecting to Spark, please wait...')
 
 const isConnected = computed(() => socketsStore.isConnected)
 const connectionId = computed(() => socketsStore.id)
@@ -11,11 +15,23 @@ const connectionId = computed(() => socketsStore.id)
 onMounted(() => {
   socketsStore.connect()
 })
+
+watch(
+  () => intervalTrigger.value,
+  (value) => {
+    if (value) {
+      message.value =
+        'We are currently experiencing problems connecting to Spark. Please bear with us while we keep trying...'
+    }
+  }
+)
 </script>
 
 <template>
   <div v-if="isConnected">Connected</div>
-  <InfoPanel v-else message="Establishing connection, please wait..." />
+  <CenteredInfoPanel v-else :message="message" icon="circle-notch" :spin="true"
+    ><p>{{ message }}</p></CenteredInfoPanel
+  >
 </template>
 
 <style scoped lang="scss">
