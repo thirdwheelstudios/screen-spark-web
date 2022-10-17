@@ -1,25 +1,23 @@
 <script setup lang="ts">
 interface Props {
-  icon: string
+  header?: string
   spin?: boolean
+  shadow?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
   spin: false,
+  shadow: false,
 })
 </script>
 
 <template>
-  <div>
-    <font-awesome-icon :icon="['fas', icon]" size="3x" :spin="spin" />
-    <slot />
+  <div class="card" :class="{ shadow: shadow }">
+    <h5 v-if="header" class="card-header">{{ header }}</h5>
+    <div class="card-body">
+      <slot />
+    </div>
   </div>
 </template>
 
-<style scoped lang="scss">
-div {
-  display: flex;
-  flex-direction: column;
-  max-width: 600px;
-}
-</style>
+<style scoped lang="scss"></style>
