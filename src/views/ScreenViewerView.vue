@@ -1,38 +1,49 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
-import { useSocketsStore } from '../store'
-import { getInterval } from '../composables'
+import { computed, onMounted, watch } from 'vue'
+import { storeToRefs } from 'pinia'
+import { getInterval, useWebRTC } from '../composables'
 import IconInfoCard from '../components/IconInfoCard.vue'
+import QrCode from '../components/QrCode.vue'
 
-const socketsStore = useSocketsStore()
+const { socketsStore, webRTCStore } = useWebRTC(false)
 const { intervalTrigger } = getInterval(10000)
 
-const message = ref('Connecting to Spark, please wait...')
+const { id, isConnected } = storeToRefs(socketsStore)
 
-const isConnected = computed(() => socketsStore.isConnected)
 const isSlowToConnect = computed(
   () => !isConnected.value && intervalTrigger.value
 )
-const connectionId = computed(() => socketsStore.id)
+const shareUrl = computed(() => {
+  if (id.value?.length)
+    return `${import.meta.env.VITE_APP_ROOT_URL}/broadcast/${id.value}`
+})
+
+const message = computed(() => {
+  if (isConnected.value) return
+
+  if (isSlowToConnect.value)
+    return 'We are currently experiencing problems connecting to Spark. Please bear with us while we keep trying...'
+
+  return 'Connecting to Spark, please wait...'
+})
 
 onMounted(() => {
   socketsStore.connect()
 })
 
 watch(
-  () => intervalTrigger.value,
+  () => shareUrl.value,
   (value) => {
-    if (value) {
-      message.value =
-        'We are currently experiencing problems connecting to Spark. Please bear with us while we keep trying...'
-    }
+    if (!value) return
+
+    webRTCStore.startListening()
   }
 )
 </script>
 
 <template>
   <Transition>
-    <div v-if="isConnected">connected: {{ connectionId }}</div>
+    <div v-if="shareUrl"><QrCode :data-to-encode="shareUrl" /></div>
     <div v-else class="status-container">
       <IconInfoCard
         header="Connecting to Spark"
