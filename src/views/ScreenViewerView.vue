@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, onMounted, watch } from 'vue'
 import { storeToRefs } from 'pinia'
-import { getInterval, useWebRTC } from '../composables'
+import { getInterval, useScreenStreaming } from '../composables'
 import IconInfoCard from '../components/IconInfoCard.vue'
 import QrCode from '../components/QrCode.vue'
 
-const { socketsStore, webRTCStore } = useWebRTC(false)
+const { socketsStore, webRTCStore } = useScreenStreaming(false)
 const { intervalTrigger } = getInterval(10000)
 
 const { id, isConnected } = storeToRefs(socketsStore)
