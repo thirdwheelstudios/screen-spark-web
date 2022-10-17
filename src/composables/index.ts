@@ -1,2 +1,2 @@
 export * from './interval'
-export * from './webRTC'
+export * from './screenStreaming'
