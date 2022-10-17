@@ -1,14 +1,18 @@
 <script setup lang="ts">
 interface Props {
   message: string
+  icon: string
+  spin?: boolean
 }
 
-defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  spin: false,
+})
 </script>
 
 <template>
   <div>
-    <label>Add an icon</label>
+    <font-awesome-icon :icon="['fas', icon]" size="3x" :spin="spin" />
     <p>{{ message }}</p>
   </div>
 </template>
