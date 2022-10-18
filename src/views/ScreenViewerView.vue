@@ -4,8 +4,9 @@ import { storeToRefs } from 'pinia'
 import { getInterval, useScreenStreaming } from '../composables'
 import IconInfoCard from '../components/IconInfoCard.vue'
 import QrCode from '../components/QrCode.vue'
+import VideoPreview from '../components/VideoPreview.vue'
 
-const { socketsStore, webRTCStore } = useScreenStreaming(false)
+const { socketsStore, webRTCStore, mediaStream } = useScreenStreaming(false)
 const { intervalTrigger } = getInterval(10000)
 
 const { id, isConnected } = storeToRefs(socketsStore)
@@ -43,7 +44,8 @@ watch(
 
 <template>
   <Transition>
-    <div v-if="shareUrl"><QrCode :data-to-encode="shareUrl" /></div>
+    <VideoPreview v-if="mediaStream" />
+    <div v-else-if="shareUrl"><QrCode :data-to-encode="shareUrl" /></div>
     <div v-else class="status-container">
       <IconInfoCard
         header="Connecting to Spark"
