@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive } from 'vue'
 import { useScreenStreaming } from '../composables'
 import CenteredContainer from '../components/CenteredContainer.vue'
 import IconInfoCard from '../components/IconInfoCard.vue'
