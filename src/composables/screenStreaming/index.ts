@@ -1,15 +1,17 @@
 import { storeToRefs } from 'pinia'
-import { computed, onMounted, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useSocketsStore, useWebRTCStore } from '../../store'
 
-const useScreenStreaming = (isBroadcasting: boolean) => {
+const useScreenStreaming = (receiverId?: string) => {
   const webRTCStore = useWebRTCStore()
   const socketsStore = useSocketsStore()
 
-  const { sdp, candidate } = storeToRefs(socketsStore)
+  const { sdp, candidate, isConnected } = storeToRefs(socketsStore)
   const { track } = storeToRefs(webRTCStore)
 
-  const mediaStream = computed(() => {
+  const localMediaStream = ref<MediaStream>()
+
+  const remoteMediaStream = computed(() => {
     if (!track.value) return
 
     const ms = new MediaStream()
@@ -20,7 +22,7 @@ const useScreenStreaming = (isBroadcasting: boolean) => {
   })
 
   onMounted(() => {
-    if (!isBroadcasting) webRTCStore.startListening()
+    socketsStore.connect()
   })
 
   watch(
@@ -41,10 +43,30 @@ const useScreenStreaming = (isBroadcasting: boolean) => {
     }
   )
 
+  watch(
+    () => isConnected.value,
+    (value) => {
+      if (!value || receiverId?.length) return
+
+      webRTCStore.startListening()
+    }
+  )
+
+  watch(
+    () => localMediaStream.value,
+    (value) => {
+      if (!value || !receiverId?.length) return
+
+      socketsStore.notifyReceiver(receiverId)
+      webRTCStore.startBroadcasting(receiverId, value)
+    }
+  )
+
   return {
     webRTCStore,
     socketsStore,
-    mediaStream,
+    localMediaStream,
+    remoteMediaStream,
   }
 }
 

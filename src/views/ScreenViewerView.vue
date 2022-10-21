@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { computed, onMounted, watch } from 'vue'
+import { computed, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { getInterval, useScreenStreaming } from '../composables'
 import IconInfoCard from '../components/IconInfoCard.vue'
 import QrCode from '../components/QrCode.vue'
 import VideoPreview from '../components/VideoPreview.vue'
+import CenteredContainer from '../components/CenteredContainer.vue'
 
-const { socketsStore, webRTCStore, mediaStream } = useScreenStreaming(false)
+const { socketsStore, webRTCStore, remoteMediaStream } = useScreenStreaming()
 const { intervalTrigger } = getInterval(10000)
 
 const { id, isConnected } = storeToRefs(socketsStore)
@@ -28,10 +29,6 @@ const message = computed(() => {
   return 'Connecting to Spark, please wait...'
 })
 
-onMounted(() => {
-  socketsStore.connect()
-})
-
 watch(
   () => shareUrl.value,
   (value) => {
@@ -43,11 +40,12 @@ watch(
 </script>
 
 <template>
-  <Transition>
-    <VideoPreview v-if="mediaStream" />
-    <div v-else-if="shareUrl"><QrCode :data-to-encode="shareUrl" /></div>
-    <div v-else class="status-container">
+  <CenteredContainer>
+    <Transition>
+      <VideoPreview v-if="remoteMediaStream" />
+      <template v-else-if="shareUrl"><QrCode :data-to-encode="shareUrl" /></template>
       <IconInfoCard
+        v-else
         header="Connecting to Spark"
         :message="message"
         icon="circle-notch"
@@ -63,25 +61,14 @@ watch(
         </div>
         <p class="m-3" v-else>Connecting to Spark, please wait...</p>
       </IconInfoCard>
-    </div>
-  </Transition>
+    </Transition>
+  </CenteredContainer>
 </template>
 
 <style scoped lang="scss">
-.status-container {
-  display: flex;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-
-  .status-card {
-    height: 210px;
-    width: 550px;
-  }
+.status-card {
+  height: 210px;
+  width: 550px;
 }
 
 .v-enter-active,

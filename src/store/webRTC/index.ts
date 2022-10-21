@@ -29,13 +29,8 @@ export const useWebRTCStore = defineStore('webRTC', {
     },
   },
   actions: {
-    async startBroadcasting(receiverId: string) {
+    async startBroadcasting(receiverId: string, mediaStream: MediaStream) {
       const socketsStore = useSocketsStore()
-
-      const displayMedia = await navigator.mediaDevices.getDisplayMedia({
-        video: true,
-        audio: true,
-      })
 
       const pc = new RTCPeerConnection(rtcConfig)
 
@@ -44,7 +39,7 @@ export const useWebRTCStore = defineStore('webRTC', {
         socketsStore.sendIceCandidate(receiverId, event.candidate)
       }
 
-      displayMedia.getTracks().forEach((track) => {
+      mediaStream.getTracks().forEach((track) => {
         pc.addTrack(track)
       })
 

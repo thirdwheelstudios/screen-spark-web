@@ -20,7 +20,7 @@ withDefaults(defineProps<Props>(), {
         :icon="['fas', icon]"
         size="3x"
         :spin="spin"
-        class="icon"
+        class="icon m-1"
       />
       <slot />
     </div>
@@ -30,5 +30,7 @@ withDefaults(defineProps<Props>(), {
 <style scoped lang="scss">
 .content {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 </style>
