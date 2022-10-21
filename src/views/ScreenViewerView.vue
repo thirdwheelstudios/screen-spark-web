@@ -6,7 +6,7 @@ import IconInfoCard from '../components/IconInfoCard.vue'
 import QrCode from '../components/QrCode.vue'
 import VideoPreview from '../components/VideoPreview.vue'
 
-const { socketsStore, webRTCStore, mediaStream } = useScreenStreaming(false)
+const { socketsStore, webRTCStore, mediaStream } = useScreenStreaming()
 const { intervalTrigger } = getInterval(10000)
 
 const { id, isConnected } = storeToRefs(socketsStore)
@@ -26,10 +26,6 @@ const message = computed(() => {
     return 'We are currently experiencing problems connecting to Spark. Please bear with us while we keep trying...'
 
   return 'Connecting to Spark, please wait...'
-})
-
-onMounted(() => {
-  socketsStore.connect()
 })
 
 watch(
