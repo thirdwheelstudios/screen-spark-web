@@ -37,8 +37,9 @@ onMounted(async () => {
 
 <template>
   <CenteredContainer
-    ><IconInfoCard
-      v-if="state.errorMessage.length"
+    ><template v-if="localMediaStream">Broadcasting: {{ receiverId }}</template>
+    <IconInfoCard
+      v-else-if="state.errorMessage.length"
       icon="display"
       header="Unable to share screen"
     >
@@ -47,6 +48,8 @@ onMounted(async () => {
         Try Again
       </button>
     </IconInfoCard>
-    <template v-else>Broadcaster: {{ receiverId }}</template></CenteredContainer
+    <template v-else
+      >Init Broadcast: {{ receiverId }}</template
+    ></CenteredContainer
   >
 </template>
