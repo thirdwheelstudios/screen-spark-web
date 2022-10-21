@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 const Account = () => import('../views/AccountView.vue')
 const ScreenBroadcaster = () => import('../views/ScreenBroadcasterView.vue')
 const ScreenViewer = () => import('../views/ScreenViewerView.vue')
+const Login = () => import('../views/LoginView.vue')
 const NotFound = () => import('../views/NotFoundView.vue')
 
 const routes = [
@@ -22,6 +23,11 @@ const routes = [
     path: '/account',
     name: 'account',
     component: Account,
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
   },
   {
     path: '/:pathMatch(.*)*',
