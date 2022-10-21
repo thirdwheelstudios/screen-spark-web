@@ -40,11 +40,12 @@ watch(
 </script>
 
 <template>
-  <Transition>
-    <VideoPreview v-if="remoteMediaStream" />
-    <div v-else-if="shareUrl"><QrCode :data-to-encode="shareUrl" /></div>
-    <CenteredContainer v-else>
+  <CenteredContainer>
+    <Transition>
+      <VideoPreview v-if="remoteMediaStream" />
+      <template v-else-if="shareUrl"><QrCode :data-to-encode="shareUrl" /></template>
       <IconInfoCard
+        v-else
         header="Connecting to Spark"
         :message="message"
         icon="circle-notch"
@@ -60,8 +61,8 @@ watch(
         </div>
         <p class="m-3" v-else>Connecting to Spark, please wait...</p>
       </IconInfoCard>
-    </CenteredContainer>
-  </Transition>
+    </Transition>
+  </CenteredContainer>
 </template>
 
 <style scoped lang="scss">
