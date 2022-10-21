@@ -5,8 +5,9 @@ import { getInterval, useScreenStreaming } from '../composables'
 import IconInfoCard from '../components/IconInfoCard.vue'
 import QrCode from '../components/QrCode.vue'
 import VideoPreview from '../components/VideoPreview.vue'
+import CenteredContainer from '../components/CenteredContainer.vue'
 
-const { socketsStore, webRTCStore, mediaStream } = useScreenStreaming()
+const { socketsStore, webRTCStore, remoteMediaStream } = useScreenStreaming()
 const { intervalTrigger } = getInterval(10000)
 
 const { id, isConnected } = storeToRefs(socketsStore)
@@ -40,9 +41,9 @@ watch(
 
 <template>
   <Transition>
-    <VideoPreview v-if="mediaStream" />
+    <VideoPreview v-if="remoteMediaStream" />
     <div v-else-if="shareUrl"><QrCode :data-to-encode="shareUrl" /></div>
-    <div v-else class="status-container">
+    <CenteredContainer v-else>
       <IconInfoCard
         header="Connecting to Spark"
         :message="message"
@@ -59,25 +60,14 @@ watch(
         </div>
         <p class="m-3" v-else>Connecting to Spark, please wait...</p>
       </IconInfoCard>
-    </div>
+    </CenteredContainer>
   </Transition>
 </template>
 
 <style scoped lang="scss">
-.status-container {
-  display: flex;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-
-  .status-card {
-    height: 210px;
-    width: 550px;
-  }
+.status-card {
+  height: 210px;
+  width: 550px;
 }
 
 .v-enter-active,
