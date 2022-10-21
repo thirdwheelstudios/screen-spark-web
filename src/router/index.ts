@@ -13,8 +13,9 @@ const routes = [
     alias: '/viewer',
   },
   {
-    path: '/broadcast',
+    path: '/broadcast/:receiverId',
     name: 'broadcast',
+    props: true,
     component: ScreenBroadcaster,
   },
   {
