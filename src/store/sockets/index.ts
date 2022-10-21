@@ -72,7 +72,7 @@ export const useSocketsStore = defineStore('sockets', {
 
       this._socket = socket
     },
-    connectToReceiver(receiverId: string) {
+    notifyReceiver(receiverId: string) {
       this._socket?.emit('connectToReceiver', receiverId)
     },
     sendIceCandidate(receiverId: string, candidate: RTCIceCandidate) {
