@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, watch } from 'vue'
+import { computed, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { getInterval, useScreenStreaming } from '../composables'
 import IconInfoCard from '../components/IconInfoCard.vue'
