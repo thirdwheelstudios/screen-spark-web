@@ -36,8 +36,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <CenteredContainer
-    ><template v-if="localMediaStream">Broadcasting: {{ receiverId }}</template>
+  <CenteredContainer>
+    <p v-if="localMediaStream">Broadcasting: {{ receiverId }}</p>
     <IconInfoCard
       v-else-if="state.errorMessage.length"
       icon="display"
@@ -48,8 +48,8 @@ onMounted(async () => {
         Try Again
       </button>
     </IconInfoCard>
-    <template v-else
-      >Init Broadcast: {{ receiverId }}</template
-    ></CenteredContainer
-  >
+    <p v-else>Init Broadcast: {{ receiverId }}</p>
+  </CenteredContainer>
 </template>
+
+<style scoped lang="scss"></style>
