@@ -41,27 +41,27 @@ watch(
 
 <template>
   <CenteredContainer>
-    <Transition>
-      <VideoPreview v-if="remoteMediaStream" />
-      <template v-else-if="shareUrl"><QrCode :data-to-encode="shareUrl" /></template>
-      <IconInfoCard
-        v-else
-        header="Connecting to Spark"
-        :message="message"
-        icon="circle-notch"
-        :spin="true"
-        :shadow="true"
-        class="status-card"
-      >
-        <div v-if="isSlowToConnect">
-          <p class="m-3">
-            We are currently experiencing problems connecting to Spark
-          </p>
-          <p>Please bear with us whilst we keep trying...</p>
-        </div>
-        <p class="m-3" v-else>Connecting to Spark, please wait...</p>
-      </IconInfoCard>
-    </Transition>
+    <VideoPreview v-if="remoteMediaStream" />
+    <template v-else-if="shareUrl"
+      ><QrCode :data-to-encode="shareUrl"
+    /></template>
+    <IconInfoCard
+      v-else
+      header="Connecting to Spark"
+      :message="message"
+      icon="circle-notch"
+      :spin="true"
+      :shadow="true"
+      class="status-card"
+    >
+      <div v-if="isSlowToConnect">
+        <p class="m-3">
+          We are currently experiencing problems connecting to Spark
+        </p>
+        <p>Please bear with us whilst we keep trying...</p>
+      </div>
+      <p class="m-3" v-else>Connecting to Spark, please wait...</p>
+    </IconInfoCard>
   </CenteredContainer>
 </template>
 
@@ -69,16 +69,5 @@ watch(
 .status-card {
   height: 210px;
   width: 550px;
-}
-
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 1s ease;
-  transition-delay: 0.5s;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
 }
 </style>
