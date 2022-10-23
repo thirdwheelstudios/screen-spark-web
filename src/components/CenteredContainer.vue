@@ -1,6 +1,8 @@
 <template>
   <div class="centered-container">
-    <slot />
+    <Transition mode="out-in">
+      <slot />
+    </Transition>
   </div>
 </template>
 
@@ -14,5 +16,15 @@
   height: 100%;
   justify-content: center;
   align-items: center;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1s ease-in;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
