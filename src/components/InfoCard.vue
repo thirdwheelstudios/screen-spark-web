@@ -1,12 +1,10 @@
 <script setup lang="ts">
 interface Props {
   header?: string
-  spin?: boolean
   shadow?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
-  spin: false,
   shadow: false,
 })
 </script>

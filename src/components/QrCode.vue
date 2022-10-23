@@ -13,10 +13,12 @@ const dataUrl = ref<string>()
 watch(
   () => props.dataToEncode,
   async (value) => {
-    dataUrl.value = await QRCode.toDataURL(value)
+    dataUrl.value = await QRCode.toDataURL(value, { width: 300 })
   },
   { immediate: true }
 )
 </script>
 
-<template><img :src="dataUrl" /></template>
+<template>
+  <img :src="dataUrl" title="QR Code to allow screen streaming" />
+</template>
