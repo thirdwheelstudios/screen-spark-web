@@ -1,7 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import NavigationBar from './components/NavigationBar.vue'
+</script>
 
 <template>
-  <router-view />
+  <NavigationBar class="navbar" />
+  <div>
+    <router-view />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.navbar {
+  position: sticky;
+}
+</style>
