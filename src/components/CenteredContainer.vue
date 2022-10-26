@@ -1,5 +1,5 @@
 <template>
-  <div class="centered-container">
+  <div class="centered-container m-3">
     <Transition mode="out-in">
       <slot />
     </Transition>
@@ -9,9 +9,6 @@
 <style scoped lang="scss">
 .centered-container {
   display: flex;
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   justify-content: center;

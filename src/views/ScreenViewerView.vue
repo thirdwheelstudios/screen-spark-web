@@ -42,9 +42,9 @@ watch(
 <template>
   <CenteredContainer>
     <VideoPreview v-if="remoteMediaStream" />
-    <template v-else-if="shareUrl"
-      ><QrCode :data-to-encode="shareUrl"
-    /></template>
+    <div v-else-if="shareUrl">
+      <QrCode :data-to-encode="shareUrl" />
+    </div>
     <IconInfoCard
       v-else
       header="Connecting to Spark"
