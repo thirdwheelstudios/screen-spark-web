@@ -4,13 +4,16 @@ import NavigationBar from './components/NavigationBar.vue'
 
 <template>
   <NavigationBar class="navbar" />
-  <div>
+  <main>
     <router-view />
-  </div>
+  </main>
 </template>
 
 <style scoped lang="scss">
-.navbar {
-  position: sticky;
+main {
+  .navbar {
+    position: fixed;
+    width: 100%;
+  }
 }
 </style>
