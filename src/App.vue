@@ -5,11 +5,16 @@ import NavigationBar from './components/NavigationBar.vue'
 <template>
   <NavigationBar class="navbar" />
   <main>
+    <h1 className="text-3xl font-bold underline">Hello world!</h1>
     <router-view />
   </main>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 main {
   .navbar {
     position: fixed;
