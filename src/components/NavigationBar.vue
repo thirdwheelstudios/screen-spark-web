@@ -55,6 +55,8 @@ const isCollapsed = ref(true)
 
 <style scoped lang="scss">
 nav {
+  z-index: 10;
+
   .navbar-nav {
     flex-grow: 1;
   }

@@ -42,12 +42,17 @@ $particleColor: #5dacbd;
   justify-content: center;
   position: relative;
 
+  .particle-content {
+    z-index: 2;
+  }
+
   .particles {
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
+    z-index: 1;
 
     .particle {
       border-radius: 1px;

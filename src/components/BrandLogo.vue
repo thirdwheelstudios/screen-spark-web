@@ -9,13 +9,18 @@ withDefaults(defineProps<Props>(), { small: false })
 <template>
   <div class="brand-container" :class="{ 'brand-small': small }">
     <img src="../assets/screen-spark-flame.svg" />
-    <div>Screen Spark</div>
+    <div>
+      <div>Screen Spark</div>
+      <slot />
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+$brand-color: #5dacbd;
+
 .brand-container {
-  color: #5dacbd;
+  color: $brand-color;
   font-family: 'Montserrat', sans-serif;
 
   img {
@@ -23,11 +28,14 @@ withDefaults(defineProps<Props>(), { small: false })
   }
 
   div {
-    display: inline-block;
-    text-transform: uppercase;
-    text-shadow: #5dacbd 1px 1px 12px;
-    font-size: 48px;
-    vertical-align: middle;
+    display: block;
+
+    div {
+      text-transform: uppercase;
+      text-shadow: $brand-color 1px 1px 12px;
+      font-size: 48px;
+      vertical-align: middle;
+    }
   }
 }
 
@@ -38,6 +46,7 @@ withDefaults(defineProps<Props>(), { small: false })
   }
 
   div {
+    display: inline-block;
     font-size: 1.25rem;
   }
 }
