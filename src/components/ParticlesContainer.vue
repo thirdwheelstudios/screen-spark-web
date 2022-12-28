@@ -37,7 +37,7 @@ $numberOfParticles: 100;
 $particleColor: #5dacbd;
 
 .particle-container {
-  background-color: #ffffff;
+  background-color: #aed6de;
   display: flex;
   justify-content: center;
   position: relative;
@@ -54,37 +54,35 @@ $particleColor: #5dacbd;
       position: absolute;
       background-color: $particleColor;
       box-shadow: $particleColor 1px 1px 1px;
-      height: 2px;
-      width: 6px;
     }
 
     @for $i from 1 through $numberOfParticles {
       @-webkit-keyframes particle-animation-#{$i} {
         0% {
           -webkit-transform: translate3d(
-              (random(110) * 1vw),
-              (random(100) * 1vh),
-              (random(400) * 1px)
+              (random(100) * 1vw),
+              (random(25) * 1vh),
+              (random(100) * 1px)
             )
             rotate(random(90) + deg);
           transform: translate3d(
-              (random(110) * 1vw),
-              (random(100) * 1vh),
-              (random(400) * 1px)
+              (random(100) * 1vw),
+              (random(25) * 1vh),
+              (random(100) * 1px)
             )
             rotate(random(90) + deg);
         }
         100% {
           -webkit-transform: translate3d(
-              (random(110) * 1vw),
-              (random(100) * 1vh),
-              (random(400) * 1px)
+              (random(55) * 1vw),
+              (random(25) * 1vh),
+              (random(100) * 1px)
             )
             rotate(random(180) + deg);
           transform: translate3d(
-              (random(110) * 1vw),
-              (random(100) * 1vh),
-              (random(400) * 1px)
+              (random(100) * 1vw),
+              (random(25) * 1vh),
+              (random(100) * 1px)
             )
             rotate(random(180) + deg);
         }
@@ -92,45 +90,43 @@ $particleColor: #5dacbd;
       @keyframes particle-animation-#{$i} {
         0% {
           -webkit-transform: translate3d(
-              (random(110) * 1vw),
-              (random(100) * 1vh),
-              (random(110) * 1px)
+              (random(100) * 1vw),
+              (random(25) * 1vh),
+              (random(100) * 1px)
             )
             rotate(random(90) + deg);
           transform: translate3d(
-              (random(110) * 1vw),
-              (random(100) * 1vh),
-              (random(400) * 1px)
+              (random(100) * 1vw),
+              (random(25) * 1vh),
+              (random(100) * 1px)
             )
             rotate(random(90) + deg);
         }
         100% {
           -webkit-transform: translate3d(
-              (random(110) * 1vw),
-              (random(100) * 1vh),
-              (random(400) * 1px)
+              (random(100) * 1vw),
+              (random(25) * 1vh),
+              (random(100) * 1px)
             )
             rotate(random(180) + deg);
           transform: translate3d(
-              (random(110) * 1vw),
-              (random(100) * 1vh),
-              (random(400) * 1px)
+              (random(55) * 1vw),
+              (random(25) * 1vh),
+              (random(100) * 1px)
             )
             rotate(random(180) + deg);
         }
       }
 
       .particle-#{$i} {
-        -webkit-animation: particle-animation-#{$i} 10s ease-in infinite,
-          fade-frames 10s ease-in-out infinite;
-        animation: particle-animation-#{$i} 10s ease-in infinite,
-          fade-frames 10s ease-in-out infinite;
+        -webkit-animation: particle-animation-#{$i} 15s ease-in infinite,
+          fade-frames 15s ease-in-out infinite;
+        animation: particle-animation-#{$i} 15s ease-in infinite,
+          fade-frames 15s ease-in-out infinite;
         height: #{random(2)}px;
         width: #{random(6)}px;
         -webkit-animation-delay: -$i + s;
         animation-delay: -$i + s;
-        // -webkit-transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
-        // transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
       }
     }
 
