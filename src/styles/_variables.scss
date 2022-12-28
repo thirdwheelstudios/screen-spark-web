@@ -1,0 +1,21 @@
+:root {
+  --bg-color: #fff;
+  --bg-color-dark: rgb(15 23 42);
+
+  --navbar-bg-color: rgba(255, 255, 255, 0.6);
+  --navbar-border-color: rgba(15, 23, 42, 0.1);
+  --navbar-bg-color-dark: rgba(0, 0, 0, 0);
+  --navbar-border-color-dark: rgba(248, 250, 252, 0.06);
+
+  --brand-color: #5dacbd;
+}
+
+$bg-color: var(--bg-color);
+$bg-color-dark: var(--bg-color-dark);
+
+$navbar-bg-color: var(--navbar-bg-color);
+$navbar-border-color: var(--navbar-border-color);
+$navbar-bg-color-dark: var(--navbar-bg-color-dark);
+$navbar-border-color-dark: var(--navbar-border-color-dark);
+
+$brand-color: var(--brand-color);

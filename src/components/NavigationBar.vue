@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useNetlifyIdentity } from '../composables'
+import BrandLogo from './BrandLogo.vue'
 
 const { openLogin, openSignup } = useNetlifyIdentity()
 
@@ -8,9 +9,11 @@ const isCollapsed = ref(true)
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <router-link to="/" class="navbar-brand">Screen Spark</router-link>
+      <router-link to="/" class="navbar-brand"
+        ><BrandLogo :small="true"
+      /></router-link>
       <button
         class="navbar-toggler"
         type="button"
