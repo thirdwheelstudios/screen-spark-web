@@ -8,9 +8,22 @@ import ParticlesContainer from '../components/ParticlesContainer.vue'
     ><div class="m-2">
       <BrandLogo
         ><span>Device to device screen sharing made easy</span></BrandLogo
-      ><button class="btn btn-primary m-5">Get Started</button>
+      ><button class="btn btn-primary m-4">Get Started</button>
     </div></ParticlesContainer
   >
+  <div class="container">
+    <div class="row m-3">
+      <div class="col">
+        <h4>Why choose Screen Spark?</h4>
+        <div class="d-flex justify-content-evenly">
+          <div>Hello</div>
+          <div>World</div>
+          <div>Hello</div>
+          <div>World</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
