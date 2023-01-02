@@ -9,7 +9,7 @@ const isCollapsed = ref(true)
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <router-link to="/" class="navbar-brand"
         ><BrandLogo :small="true"
@@ -54,17 +54,11 @@ const isCollapsed = ref(true)
 </template>
 
 <style scoped lang="scss">
-$brand-color: #5dacbd;
-
 nav {
   z-index: 10;
 
   .navbar-nav {
     flex-grow: 1;
-  }
-
-  .navbar-toggler {
-    background-color: $brand-color;
   }
 }
 </style>
