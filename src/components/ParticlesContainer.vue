@@ -53,6 +53,7 @@ $particleColor: #5dacbd;
     right: 0;
     bottom: 0;
     z-index: 1;
+    overflow: hidden;
 
     .particle {
       border-radius: 1px;
@@ -66,27 +67,27 @@ $particleColor: #5dacbd;
         0% {
           -webkit-transform: translate3d(
               (random(100) * 1vw),
-              (random(25) * 1vh),
+              percentage(random(100) * 2.5),
               (random(100) * 1px)
             )
             rotate(random(90) + deg);
           transform: translate3d(
               (random(100) * 1vw),
-              (random(25) * 1vh),
+              percentage(random(100) * 2.5),
               (random(100) * 1px)
             )
             rotate(random(90) + deg);
         }
         100% {
           -webkit-transform: translate3d(
-              (random(55) * 1vw),
-              (random(25) * 1vh),
+              (random(100) * 1vw),
+              percentage(random(100) * 2.5),
               (random(100) * 1px)
             )
             rotate(random(180) + deg);
           transform: translate3d(
               (random(100) * 1vw),
-              (random(25) * 1vh),
+              percentage(random(100) * 2.5),
               (random(100) * 1px)
             )
             rotate(random(180) + deg);
@@ -96,13 +97,13 @@ $particleColor: #5dacbd;
         0% {
           -webkit-transform: translate3d(
               (random(100) * 1vw),
-              (random(25) * 1vh),
+              percentage(random(100) * 2.5),
               (random(100) * 1px)
             )
             rotate(random(90) + deg);
           transform: translate3d(
               (random(100) * 1vw),
-              (random(25) * 1vh),
+              percentage(random(100) * 2.5),
               (random(100) * 1px)
             )
             rotate(random(90) + deg);
@@ -110,13 +111,13 @@ $particleColor: #5dacbd;
         100% {
           -webkit-transform: translate3d(
               (random(100) * 1vw),
-              (random(25) * 1vh),
+              percentage(random(100) * 2.5),
               (random(100) * 1px)
             )
             rotate(random(180) + deg);
           transform: translate3d(
-              (random(55) * 1vw),
-              (random(25) * 1vh),
+              (random(100) * 1vw),
+              percentage(random(100) * 2.5),
               (random(100) * 1px)
             )
             rotate(random(180) + deg);
