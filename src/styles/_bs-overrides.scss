@@ -6,15 +6,3 @@
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
-
-.dark-mode {
-  .navbar {
-    background-color: rgba(0, 54, 63, 0.8);
-    border-bottom-color: rgba(248, 250, 252, 0.06);
-
-    .navbar-brand,
-    nav-link {
-      color: rgb(56, 189, 248);
-    }
-  }
-}
