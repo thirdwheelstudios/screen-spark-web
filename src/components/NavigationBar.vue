@@ -54,11 +54,17 @@ const isCollapsed = ref(true)
 </template>
 
 <style scoped lang="scss">
+$brand-color: #5dacbd;
+
 nav {
   z-index: 10;
 
   .navbar-nav {
     flex-grow: 1;
+  }
+
+  .navbar-toggler {
+    background-color: $brand-color;
   }
 }
 </style>
