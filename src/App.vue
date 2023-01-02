@@ -3,7 +3,7 @@ import NavigationBar from './components/NavigationBar.vue'
 </script>
 
 <template>
-  <main class="dark-mode">
+  <main>
     <NavigationBar class="navbar" />
     <section>
       <router-view />
