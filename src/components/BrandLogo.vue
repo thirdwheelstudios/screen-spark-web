@@ -43,6 +43,7 @@ $brand-color: #5dacbd;
   img {
     height: 48px;
     margin: 0 0.5rem;
+    margin-right: 1rem;
   }
 
   div {
