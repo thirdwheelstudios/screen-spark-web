@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
+const Home = () => import('../views/HomeView.vue')
 const Account = () => import('../views/AccountView.vue')
 const ScreenBroadcaster = () => import('../views/ScreenBroadcasterView.vue')
 const ScreenViewer = () => import('../views/ScreenViewerView.vue')
@@ -9,6 +10,11 @@ const NotFound = () => import('../views/NotFoundView.vue')
 const routes = [
   {
     path: '/',
+    name: 'home',
+    component: Home,
+  },
+  {
+    path: '/viewer',
     name: 'viewer',
     component: ScreenViewer,
     alias: '/viewer',
