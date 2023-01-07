@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useNetlifyIdentity } from '../composables'
+import { useRouter } from 'vue-router'
 import BrandLogo from './BrandLogo.vue'
 
-const { openLogin, openSignup } = useNetlifyIdentity()
+const router = useRouter()
 
 const isCollapsed = ref(true)
 </script>
@@ -36,18 +36,11 @@ const isCollapsed = ref(true)
             <router-link to="/account" class="nav-link">Account</router-link>
           </li>
         </ul>
-        <form class="d-flex" @submit.prevent="openLogin">
-          <button class="btn btn-outline-primary me-2" type="submit">
-            Login
-          </button>
-          <button
-            class="btn btn-outline-success"
-            type="button"
-            @click="openSignup"
-          >
-            Sign Up
-          </button>
-        </form>
+        <div class="d-flex">
+          <router-link to="login">
+            <button class="btn btn-outline-info me-2">Login</button>
+          </router-link>
+        </div>
       </div>
     </div>
   </nav>

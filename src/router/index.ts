@@ -34,6 +34,7 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login,
+    alias: '/get-started',
   },
   {
     path: '/:pathMatch(.*)*',
