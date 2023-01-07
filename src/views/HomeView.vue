@@ -4,7 +4,7 @@ import ParticlesContainer from '../components/ParticlesContainer.vue'
 </script>
 
 <template>
-  <ParticlesContainer :number-of-particles="50" class="hero"
+  <ParticlesContainer class="hero"
     ><div class="m-2">
       <BrandLogo
         ><span>Device to device screen sharing made easy</span></BrandLogo
@@ -12,15 +12,18 @@ import ParticlesContainer from '../components/ParticlesContainer.vue'
     </div></ParticlesContainer
   >
   <div class="container">
-    <div class="row m-3">
-      <div class="col">
-        <h4>Why choose Screen Spark?</h4>
-        <div class="d-flex justify-content-evenly">
-          <div>Hello</div>
-          <div>World</div>
-          <div>Hello</div>
-          <div>World</div>
-        </div>
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-3">
+        <div>Hello</div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div>World</div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div>Hello</div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div>World</div>
       </div>
     </div>
   </div>
