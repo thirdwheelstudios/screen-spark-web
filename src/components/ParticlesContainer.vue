@@ -1,22 +1,15 @@
 <script setup lang="ts">
-import { computed, onBeforeMount } from 'vue'
+import { computed } from 'vue'
 
 interface Props {
   numberOfParticles?: number
 }
 
-const props = withDefaults(defineProps<Props>(), { numberOfParticles: 30 })
+const props = withDefaults(defineProps<Props>(), { numberOfParticles: 50 })
 
 const particles = computed(() =>
   [...Array(props.numberOfParticles + 1).keys()].slice(1)
 )
-
-onBeforeMount(() => {
-  document.body.style.setProperty(
-    '--number-of-particles',
-    `${props.numberOfParticles}`
-  )
-})
 </script>
 
 <template>
